@@ -220,3 +220,4 @@ jQuery('.blockinput-result_calc').on('click', function(e){
     $curBlock.find('input').prop("checked", true);
     $curBlock.find('span').addClass('checked');
 });
+

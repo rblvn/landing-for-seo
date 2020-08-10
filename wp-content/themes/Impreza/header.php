@@ -7,6 +7,25 @@
  * you should find all the needed hooks there.
  */
 
+// for destrict shorcodes in header
+
+
+add_shortcode( 'district-predl', 'field_shortcode_predl' );
+add_shortcode( 'district-rod', 'field_shortcode_rod' );
+add_shortcode( 'district-im', 'field_shortcode_im' );
+add_shortcode( 'district-po', 'field_shortcode_po' );
+
+
+// function field_shortcode_predl() {
+// 	return get_field('district-predl');
+// }
+// function field_shortcode_im() {
+// 	return get_field('district-im');
+// }
+// function field_shortcode_rod() {
+// 	return get_field('district-rod');
+// }
+
 if ( function_exists( 'us_load_template' ) ) {
 
 	us_load_template( 'templates/header' );

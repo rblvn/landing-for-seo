@@ -2,7 +2,6 @@
 
 
 
-
 /*
      FILE ARCHIVED ON 2:20:01 апр 14, 2016 AND RETRIEVED FROM THE
      INTERNET ARCHIVE ON 15:09:19 сен 22, 2016.
@@ -88,5 +87,3 @@ Calc = {
         }
     }
 }
-
-

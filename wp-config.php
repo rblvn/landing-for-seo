@@ -1,4 +1,8 @@
 <?php
+
+// Configuration common to all environments
+include_once __DIR__ . '/wp-config.common.php';
+
 /**
  * Основные параметры WordPress.
  *
@@ -17,26 +21,19 @@
  *
  * @package WordPress
  */
-
 // ** Параметры MySQL: Эту информацию можно получить у вашего хостинг-провайдера ** //
 /** Имя базы данных для WordPress */
-define( 'DB_NAME', 'evacuator' );
-
+define( 'DB_NAME', "evacuator" );
 /** Имя пользователя MySQL */
-define( 'DB_USER', 'admin' );
-
+define( 'DB_USER', "root" );
 /** Пароль к базе данных MySQL */
-define( 'DB_PASSWORD', 'admin' );
-
+define( 'DB_PASSWORD', "root" );
 /** Имя сервера MySQL */
-define( 'DB_HOST', 'localhost' );
-
+define( 'DB_HOST', "localhost" );
 /** Кодировка базы данных для создания таблиц. */
 define( 'DB_CHARSET', 'utf8mb4' );
-
 /** Схема сопоставления. Не меняйте, если не уверены. */
 define( 'DB_COLLATE', '' );
-
 /**#@+
  * Уникальные ключи и соли для аутентификации.
  *
@@ -54,9 +51,7 @@ define( 'AUTH_SALT',        'oE&[+t`94Zuh%h=Hu@YNbtd<$gCv@<zu6cC!7;M[4#+=_;AkfXE
 define( 'SECURE_AUTH_SALT', '@Y-+.,DKXkP`F;T 7<5T3{vKdY3oCIs!P,x0M+^%8&T]p71<4eGYdDbzfwf$]^<<' );
 define( 'LOGGED_IN_SALT',   'VWtcKo1&Q~e)/g?_OTEtZA>(t:XNEdmn(@mV/Wq4.JL*z$_@@+czX#X7F=2aK?:?' );
 define( 'NONCE_SALT',       'JdK@S0p:/KFEs,RZ<Sfm~:BHa se|k54Q0(R4q^c(}@rGA//=It1?k?[J];@1wsH' );
-
 /**#@-*/
-
 /**
  * Префикс таблиц в базе данных WordPress.
  *
@@ -64,7 +59,6 @@ define( 'NONCE_SALT',       'JdK@S0p:/KFEs,RZ<Sfm~:BHa se|k54Q0(R4q^c(}@rGA//=It
  * разные префиксы. Пожалуйста, указывайте только цифры, буквы и знак подчеркивания.
  */
 $table_prefix = 'wp_';
-
 /**
  * Для разработчиков: Режим отладки WordPress.
  *
@@ -76,14 +70,12 @@ $table_prefix = 'wp_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define( 'WP_DEBUG', true );
+define( 'WP_DEBUG', false );
 
 /* Это всё, дальше не редактируем. Успехов! */
-
 /** Абсолютный путь к директории WordPress. */
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
 }
-
 /** Инициализирует переменные WordPress и подключает файлы. */
 require_once( ABSPATH . 'wp-settings.php' );

@@ -1,8 +1,7 @@
+#This Apache config file was created by Duplicator Installer on 2020-08-10 16:52:33.
+#The original can be found in archived file with the name .htaccess__[HASH]
 
 # BEGIN WordPress
-# Директивы (строки) между `BEGIN WordPress` и `END WordPress`
-# созданы автоматически и подлежат изменению только через фильтры WordPress.
-# Сделанные вручную изменения между этими маркерами будут перезаписаны.
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /evacuator/
@@ -11,5 +10,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /evacuator/index.php [L]
 </IfModule>
-
 # END WordPress

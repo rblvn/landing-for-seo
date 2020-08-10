@@ -1,22 +1,146 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
+//admin page on other link
+
+define('ADMIN_URL', 'welcome.php');
+add_action('init', 'redirect_login_page');
+add_filter('login_url', 'new_wp_login_url', 10, 3);
+add_filter('logout_url', 'new_wp_logout_url', 10, 2);
+add_filter('lostpassword_url', 'new_wp_lostpassword_url', 10, 2);
+
+
+function redirect_login_page() {
+  $page_viewed = $_SERVER['REQUEST_URI'];
+  if (strpos($page_viewed, "wp-login.php") !== false || (is_admin() && !(current_user_can('administrator') ||  current_user_can('super admin')) && !(defined('DOING_AJAX') && DOING_AJAX)) ) {
+    global $wp_query;
+    $wp_query->set_404();
+    status_header(404);
+    get_template_part('404');
+    exit; 
+  }
+}
+
+function new_wp_login_url($redirect = '', $force_reauth = false) {
+  $login_url = site_url(ADMIN_URL, 'login');
+  if (!empty($redirect)) $login_url = add_query_arg('redirect_to', urlencode($redirect), $login_url);
+  if ($force_reauth) $login_url = add_query_arg('reauth', '1', $login_url);
+  return $login_url;
+}
+
+function new_wp_logout_url() {
+  $args = array( 'action' => 'logout' );
+  $logout_url = add_query_arg($args, site_url(ADMIN_URL, 'login'));
+  $logout_url = wp_nonce_url( $logout_url, 'log-out' );
+  return $logout_url;
+}
+
+function new_wp_lostpassword_url() {
+  $args = array( 'action' => 'lostpassword' );
+  $lostpassword_url = add_query_arg( $args, network_site_url(ADMIN_URL, 'login') );
+  return $lostpassword_url;
+}
+
+//disctrict shortcodes 
+//
+// shortcodes added in header.php 
+
+function field_shortcode_predl() {
+	return get_field('district-predl');
+}
+function field_shortcode_im() {
+	return get_field('district-im');
+}
+function field_shortcode_rod() {
+	return get_field('district-rod');
+}
+function field_shortcode_po() {
+	return get_field('district-po');
+}
+
+//shortcodes for text group (ACF)
+
+add_shortcode( 'price-table-heading', 'field_price_table_heading' );
+
+function field_price_table_heading() {
+	return get_field('price-table-heading');
+}
+
+add_shortcode( 'price-table-text', 'field_price_table_text' );
+
+function field_price_table_text() {
+	return get_field('price-table-text');
+}
+
+// heading for 0 block
+add_shortcode( 'text-seo-0-heading', 'field_text_seo_0_heading' );
+
+function field_text_seo_0_heading() {
+	return get_field('text-seo-0-heading');
+}
+
+// text for 0 block
+add_shortcode( 'text-seo-0-text', 'field_text_seo_0_text' );
+
+function field_text_seo_0_text() {
+	return get_field('text-seo-0-text');
+}
+
+// text for 1 block
+add_shortcode( 'text-seo-1-text', 'field_text_seo_1_text' );
+
+function field_text_seo_1_text() {
+	return get_field('text-seo-1-text');
+}
+
+// text for 2 block
+add_shortcode( 'text-seo-2-text', 'field_text_seo_2_text' );
+
+function field_text_seo_2_text() {
+	return get_field('text-seo-2-text');
+}
+
+// text for 3 block
+add_shortcode( 'text-seo-3-text', 'field_text_seo_3_text' );
+
+function field_text_seo_3_text() {
+	return get_field('text-seo-3-text');
+}
+
+// text for 4 block
+add_shortcode( 'text-seo-4-text', 'field_text_seo_4_text' );
+
+function field_text_seo_4_text() {
+	return get_field('text-seo-4-text');
+}
+
+
+
+//shortcode rand values
+
+add_shortcode( 'rand-value', 'random_value' );
+
+function random_value( $args ){
+	 return mt_rand($args['val_1'], $args['val_2']);
+}
+
+
+//assets
+
 add_action('wp_enqueue_scripts', 'add_assets');
 
-
 function add_assets() {
-    
+
+	wp_deregister_script( 'jquery-core' );
+
+	wp_register_script( 'jquery-core', '//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
+
+	wp_enqueue_script( 'jquery' );	
+
+	wp_enqueue_script('vue.js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', array(), '1.0.0', true );
+
 	wp_enqueue_script('calc-common', get_template_directory_uri() . '/js/common.js', array(), '1.0.0', true );
-     wp_enqueue_script('calc-data', get_template_directory_uri() . '/js/calc.data.js', array(), '1.0.0', true );
-     wp_enqueue_script('calc-main', get_template_directory_uri() . '/js/calc.js', array(), '1.0.0', true );
-     wp_enqueue_script('disclaim-element.js', get_template_directory_uri() . '/js/disclaim-element.js', array(), '1.0.0', true );
-     wp_enqueue_script('graph-calc.js', get_template_directory_uri() . '/js/graph-calc.js', array(), '1.0.0', true );
-    wp_enqueue_script('vue.js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', array(), '1.0.0', true );
-    wp_enqueue_style('jquery.modal.min.css', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css');
-    wp_enqueue_script('main.js', get_template_directory_uri() . '/js/main.js', array(), '1.0.0', true );
-
-wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
-	wp_enqueue_script( 'jquery' );
-
+	
+	wp_enqueue_script('map', get_template_directory_uri() . '/js/map.js', array(), '1.0.0', true );
 
 }
 
