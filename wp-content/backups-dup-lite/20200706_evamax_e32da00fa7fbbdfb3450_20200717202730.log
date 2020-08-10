@@ -1,0 +1,86 @@
+********************************************************************************
+DUPLICATOR-LITE PACKAGE-LOG: 17.07.2020 20:27
+NOTICE: Do NOT post to public sites or forums 
+********************************************************************************
+VERSION:	1.3.36
+WORDPRESS:	5.4.2
+PHP INFO:	7.4.2 | SAPI: apache2handler
+SERVER:		Apache 
+PHP TIME LIMIT: (0) no time limit imposed 
+PHP MAX MEMORY: 4294967296 (128M default) 
+MEMORY STACK: 4.5MB
+
+********************************************************************************
+DATABASE:
+********************************************************************************
+BUILD MODE:   PHP(query limit - 100)
+MYSQLTIMEOUT: 5000
+MYSQLDUMP:    Not Supported
+TABLES: total:23 | filtered:0 | create:23
+FILTERED: []
+SQL CREATED: 20200706_evamax_e32da00fa7fbbdfb3450_20200717202730_database.sql
+SQL FILE SIZE: 286.71KB (293593)
+SQL FILE TIME: 2020-07-17 20:27:37
+SQL RUNTIME: 0.15 sec.
+
+********************************************************************************
+ARCHIVE (ZIP):
+********************************************************************************
+ARCHIVE DIR:  /Applications/MAMP/htdocs/evacuator
+ARCHIVE FILE: 20200706_evamax_e32da00fa7fbbdfb3450_20200717202730_archive.zip
+FILTERS: *OFF*
+DIRS:
+	not set
+FILES:
+	not set
+EXTS:  not set
+----------------------------------------
+COMPRESSING
+SIZE:	168.92MB
+STATS:	Dirs 1,446 | Files 7,405
+SQL ADDED: 20200706_evamax_e32da00fa7fbbdfb3450_20200717202730_database.sql
+ZipArchive Object
+(
+    [status] => 0
+    [statusSys] => 0
+    [numFiles] => 8851
+    [filename] => /Applications/MAMP/htdocs/evacuator/wp-content/backups-dup-lite/tmp/20200706_evamax_e32da00fa7fbbdfb3450_20200717202730_archive.zip
+    [comment] => 
+)
+
+FILE ADDED TO ZIP: 8850
+COMPRESSION RESULT: '1'
+COMPRESSED SIZE: 83.13MB
+ARCHIVE RUNTIME: 26.83 sec.
+MEMORY STACK: 4.5MB
+building installer
+add_extra_files1
+add_extra_files2
+add_extra_files3
+add_extra_files4
+Doing archive file check
+add_extra_files5
+add_extra_files6
+add_extra_files8
+Successfully opened zip /Applications/MAMP/htdocs/evacuator/wp-content/backups-dup-lite/tmp/20200706_evamax_e32da00fa7fbbdfb3450_20200717202730_archive.zip
+Adding enhanced installer files to archive using ZipArchive
+Installer files added to archive
+Added to archive
+After ziparchive close when adding installer
+
+********************************************************************************
+INTEGRITY CHECKS:
+********************************************************************************
+SQL FILE: 286.71KB
+INSTALLER FILE: 61.31KB
+ARCHIVE FILE: 84.65MB 
+EXPECTED FILE/DIRECTORY COUNT: 8,851
+ACTUAL FILE/DIRECTORY COUNT: 8,850
+ТЕСТ ЛОГИКИ АРХИВА: Пройден
+
+********************************************************************************
+RECORD ID:[2]
+TOTAL PROCESS RUNTIME: 31.27 sec.
+PEAK PHP MEMORY USED: 6.5MB
+DONE PROCESSING => 20200706_evamax 17.07.2020 20:28
+
