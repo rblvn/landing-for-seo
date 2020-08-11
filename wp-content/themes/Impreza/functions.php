@@ -1,5 +1,48 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
+//test
+
+// function random_value( $args ){
+// 	 return mt_rand($args['val_1'], $args['val_2']);
+// }
+
+
+
+add_shortcode('seo-text', 'seo_text');
+function seo_text($args){
+  switch ($args['text_number']) {
+  	case '0':
+  		return get_field('text-seo-0-text');
+  		break;
+
+	case '0':
+  		return get_field('text-seo-0-text');
+  		break;
+
+	case '1':
+  		return get_field('text-seo-1-text');
+  		break;  
+  		
+  	case '2':
+  		return get_field('text-seo-2-text');
+  		break; 	
+
+	case '3':
+  		return get_field('text-seo-3-text');
+  		break; 	 
+
+  	case '4':
+  		return get_field('text-seo-4-text');
+  		break; 
+
+  	default:
+  		return('error');
+  		break;
+	}
+}
+
+
+
 //admin page on other link
 
 define('ADMIN_URL', 'welcome.php');
