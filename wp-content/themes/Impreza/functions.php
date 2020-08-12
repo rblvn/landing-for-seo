@@ -1,13 +1,5 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
-//test
-
-// function random_value( $args ){
-// 	 return mt_rand($args['val_1'], $args['val_2']);
-// }
-
-
-
 add_shortcode('seo-text', 'seo_text');
 function seo_text($args){
   switch ($args['text_number']) {
@@ -115,47 +107,12 @@ function field_price_table_text() {
 }
 
 // heading for 0 block
+
 add_shortcode( 'text-seo-0-heading', 'field_text_seo_0_heading' );
 
 function field_text_seo_0_heading() {
 	return get_field('text-seo-0-heading');
 }
-
-// text for 0 block
-add_shortcode( 'text-seo-0-text', 'field_text_seo_0_text' );
-
-function field_text_seo_0_text() {
-	return get_field('text-seo-0-text');
-}
-
-// text for 1 block
-add_shortcode( 'text-seo-1-text', 'field_text_seo_1_text' );
-
-function field_text_seo_1_text() {
-	return get_field('text-seo-1-text');
-}
-
-// text for 2 block
-add_shortcode( 'text-seo-2-text', 'field_text_seo_2_text' );
-
-function field_text_seo_2_text() {
-	return get_field('text-seo-2-text');
-}
-
-// text for 3 block
-add_shortcode( 'text-seo-3-text', 'field_text_seo_3_text' );
-
-function field_text_seo_3_text() {
-	return get_field('text-seo-3-text');
-}
-
-// text for 4 block
-add_shortcode( 'text-seo-4-text', 'field_text_seo_4_text' );
-
-function field_text_seo_4_text() {
-	return get_field('text-seo-4-text');
-}
-
 
 
 //shortcode rand values
