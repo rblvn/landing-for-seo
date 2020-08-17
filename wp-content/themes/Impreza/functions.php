@@ -1,5 +1,20 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
+add_shortcode('phone', 'phone_number');
+
+  // function phone_number($args){
+  //   if ($args['text']!=NULL) {$args['text'] = '+7 (915) 428-47-46';}
+  //   return "<a href = 'tel:+7(915)428-47-46'>  $args[text]</a>";
+  // }
+
+function phone_number( $atts ) {
+  $param = shortcode_atts( array( 'text' => '+7 (915) 428-47-46' ), $atts );
+  return "<a href = 'tel:+7(915)428-47-46'>  {$param['text']}</a>";
+}
+
+add_shortcode( 'trueurl', 'true_url_external' );
+
+
 add_shortcode('seo-text', 'seo_text');
 function seo_text($args){
   switch ($args['text_number']) {
