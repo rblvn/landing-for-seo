@@ -1787,11 +1787,11 @@ msgstr ""
 msgid "Get updates for pre-release versions of %s"
 msgstr ""
 
-#: classes/Analytics.php:159
+#: classes/Analytics.php:160
 msgid "Event Type"
 msgstr ""
 
-#: classes/Analytics.php:164, classes/Shortcode/Subscribe.php:410, includes/integrations/ninja-forms/Actions/OpenPopup.php:42
+#: classes/Analytics.php:165, classes/Shortcode/Subscribe.php:410, includes/integrations/ninja-forms/Actions/OpenPopup.php:42
 msgid "Popup ID"
 msgstr ""
 

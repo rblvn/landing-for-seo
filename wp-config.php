@@ -1,8 +1,6 @@
 <?php
-
 // Configuration common to all environments
 include_once __DIR__ . '/wp-config.common.php';
-
 /**
  * Основные параметры WordPress.
  *
@@ -71,7 +69,6 @@ $table_prefix = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define( 'WP_DEBUG', false );
-
 /* Это всё, дальше не редактируем. Успехов! */
 /** Абсолютный путь к директории WordPress. */
 if ( ! defined( 'ABSPATH' ) ) {
