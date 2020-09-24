@@ -15,6 +15,7 @@ add_shortcode( 'district-rod', 'field_shortcode_rod' );
 add_shortcode( 'district-im', 'field_shortcode_im' );
 add_shortcode( 'district-po', 'field_shortcode_po' );
 add_shortcode('phone', 'phone_number');
+add_shortcode('alt-main-img', 'field_shortcode_alt_main_img');
 
 
 // function field_shortcode_predl() {

@@ -1,15 +1,70 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
+add_shortcode( 'TS', 'text_seo' );
 
-  // function phone_number($args){
-  //   if ($args['text']!=NULL) {$args['text'] = '+7 (915) 428-47-46';}
-  //   return "<a href = 'tel:+7(915)428-47-46'>  $args[text]</a>";
-  // }
+function text_seo ( $args ){
+
+	$pages = $wpdb->get_results( 
+	"
+	SELECT post_title, post_content 
+	FROM $wpdb->posts
+	WHERE post_status = 'publish' 
+	AND post_type = 'page'
+	"
+);
+
+/* вытаскивает из базы данных заголовки и содержимое
+всех опубликованных страниц */
+if( $pages ) {
+	foreach ( $pages as $page ) {
+		echo $page->post_title;
+	}
+}
+// выводим заголовки
+	
+
+	if (empty($args['text-position'])){
+
+		echo do_shortcode( '[phone text = "Позвоните в Эвамакс"]');
+		wp_mail('sugudushka@gmail.com', 'Незаполненный текст на странице' . get_page_link(), 'Ошибка: незаполненное поле');
+		return;
+
+	}
+
+	$query = new WP_Query( [
+		'posts_per_page' => 1,
+		'post_type' => 'seo',
+		'trim' => $args['text-position']
+	] );
+
+	global $post;
+
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			$content = get_the_content();	
+		}
+	}
+
+	wp_reset_postdata(); 
+
+	//clear all html tags
+	$content =  wp_strip_all_tags( $content );
+
+	echo do_shortcode( $content );
+
+}
+
+
+
+
+
 
 function phone_number( $atts ) {
   $param = shortcode_atts( array( 'text' => '+7 (915) 428-47-46' ), $atts );
   return "<a href = 'tel:+7(915)428-47-46'>  {$param['text']}</a>";
 }
+
 add_shortcode('seo-text', 'seo_text');
 function seo_text($args){
   switch ($args['text_number']) {
@@ -43,57 +98,14 @@ function seo_text($args){
 	}
 }
 
-
-
-//admin page on other link
-
-define('ADMIN_URL', 'welcome.php');
-add_action('init', 'redirect_login_page');
-add_filter('login_url', 'new_wp_login_url', 10, 3);
-add_filter('logout_url', 'new_wp_logout_url', 10, 2);
-add_filter('lostpassword_url', 'new_wp_lostpassword_url', 10, 2);
-
-
-function redirect_login_page() {
-  $page_viewed = $_SERVER['REQUEST_URI'];
-  if (strpos($page_viewed, "wp-login.php") !== false || (is_admin() && !(current_user_can('administrator') ||  current_user_can('super admin')) && !(defined('DOING_AJAX') && DOING_AJAX)) ) {
-    global $wp_query;
-    $wp_query->set_404();
-    status_header(404);
-    get_template_part('404');
-    exit; 
-  }
-}
-
-function new_wp_login_url($redirect = '', $force_reauth = false) {
-  $login_url = site_url(ADMIN_URL, 'login');
-  if (!empty($redirect)) $login_url = add_query_arg('redirect_to', urlencode($redirect), $login_url);
-  if ($force_reauth) $login_url = add_query_arg('reauth', '1', $login_url);
-  return $login_url;
-}
-
-function new_wp_logout_url() {
-  $args = array( 'action' => 'logout' );
-  $logout_url = add_query_arg($args, site_url(ADMIN_URL, 'login'));
-  $logout_url = wp_nonce_url( $logout_url, 'log-out' );
-  return $logout_url;
-}
-
-function new_wp_lostpassword_url() {
-  $args = array( 'action' => 'lostpassword' );
-  $lostpassword_url = add_query_arg( $args, network_site_url(ADMIN_URL, 'login') );
-  return $lostpassword_url;
-}
-
 //disctrict shortcodes 
 //
 // shortcodes added in header.php 
 
-add_shortcode('field_shortcode_main_img', 'main-img');
-function field_shortcode_main_img() {
-  return get_field('main-img');
+function field_shortcode_alt_main_img() {
+  return get_field('alt-main-img');
 }
-function field_shortcode_predl() {
+function field_shortcode_predl( $atts ) {
 	return get_field('district-predl');
 }
 function field_shortcode_im() {
@@ -200,3 +212,43 @@ $us_theme_supports = array(
 );
 
 require dirname( __FILE__ ) . '/common/framework.php';
+
+//admin page on other link
+
+define('ADMIN_URL', 'welcome.php');
+add_action('init', 'redirect_login_page');
+add_filter('login_url', 'new_wp_login_url', 10, 3);
+add_filter('logout_url', 'new_wp_logout_url', 10, 2);
+add_filter('lostpassword_url', 'new_wp_lostpassword_url', 10, 2);
+
+
+function redirect_login_page() {
+  $page_viewed = $_SERVER['REQUEST_URI'];
+  if (strpos($page_viewed, "wp-login.php") !== false || (is_admin() && !(current_user_can('administrator') ||  current_user_can('super admin')) && !(defined('DOING_AJAX') && DOING_AJAX)) ) {
+    global $wp_query;
+    $wp_query->set_404();
+    status_header(404);
+    get_template_part('404');
+    exit; 
+  }
+}
+
+function new_wp_login_url($redirect = '', $force_reauth = false) {
+  $login_url = site_url(ADMIN_URL, 'login');
+  if (!empty($redirect)) $login_url = add_query_arg('redirect_to', urlencode($redirect), $login_url);
+  if ($force_reauth) $login_url = add_query_arg('reauth', '1', $login_url);
+  return $login_url;
+}
+
+function new_wp_logout_url() {
+  $args = array( 'action' => 'logout' );
+  $logout_url = add_query_arg($args, site_url(ADMIN_URL, 'login'));
+  $logout_url = wp_nonce_url( $logout_url, 'log-out' );
+  return $logout_url;
+}
+
+function new_wp_lostpassword_url() {
+  $args = array( 'action' => 'lostpassword' );
+  $lostpassword_url = add_query_arg( $args, network_site_url(ADMIN_URL, 'login') );
+  return $lostpassword_url;
+}

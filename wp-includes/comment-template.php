@@ -595,7 +595,12 @@ function comment_date( $format = '', $comment_ID = 0 ) {
  */
 function get_comment_excerpt( $comment_ID = 0 ) {
 	$comment      = get_comment( $comment_ID );
-	$comment_text = strip_tags( str_replace( array( "\n", "\r" ), ' ', $comment->comment_content ) );
+
+	if ( ! post_password_required( $comment->comment_post_ID ) ) {
+		$comment_text = strip_tags( str_replace( array( "\n", "\r" ), ' ', $comment->comment_content ) );
+	} else {
+		$comment_text = __( 'Password protected' );
+	}
 
 	/* translators: Maximum number of words used in a comment excerpt. */
 	$comment_excerpt_length = intval( _x( '20', 'comment_excerpt_length' ) );
