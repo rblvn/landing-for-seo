@@ -99,9 +99,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
 
 
-/*******************************************************************************
- * Copyright (c) 2020, WP Popup Maker
- ******************************************************************************/
+/**************************************
+ * Copyright (c) 2020, Popup Maker
+ *************************************/
 {
   var formProvider = "contactform7";
   var $ = window.jQuery;

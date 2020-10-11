@@ -3,7 +3,7 @@ Contributors: pechenki
 Tags: telegram, Сontact form 7 to telegram, Сontact form 7, wooccommerce to telegram, Wpforms to telegram, wpforms to telegram
 Requires at least: 4.8
 Requires PHP: 5.6
-Tested up to: 5.3
+Tested up to: 5.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -43,6 +43,20 @@ https://pechenki.top/telsender.html
 
 
 == Changelog ==
+= 1.10.3 =
+* fix error js codemirror
+* fix error is empty status settings 
+
+= 1.10.11 =
+* fix error js codemirror
+= 1.10.1 =
+* fix dublication message
+
+= 1.10.0 =
+* fix html wc temlated
+* filter status order Fixed
+* add new shortcode  {products_v3} - all options product
+
 = 1.0.6 =
 * add shortcode woocommerce
 
@@ -70,5 +84,9 @@ https://pechenki.top/telsender.html
 0.9.5 - Add meta data product to Messages
 0.9.6 - Fixed eroor, add send to wpforms
 0.9.7 - Fixed eroor, fix send wpform, add languages files
+
+
+
+
 
 Для Работы нужен Сurl

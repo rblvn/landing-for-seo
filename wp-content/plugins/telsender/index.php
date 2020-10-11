@@ -1,13 +1,13 @@
 <?php
 /**
  * @package HOT
- * @version 1.0.6
+ * @version 1.0.8
  */
 /*
 Plugin Name: TelSender
 Description: Плагин отправляет заявки из форм в телеграм канал
 Author: Pechenki
-Version: 1.0.7
+Version: 1.10.3
 Author URI: https://pechenki.top/telsender.html
 */
 //////////////////////////////////

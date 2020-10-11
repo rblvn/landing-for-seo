@@ -79,20 +79,30 @@ class TelsenderWc
   public function Products() {
       $items =  $this->order->get_items();
       $curents =  get_woocommerce_currency_symbol();
+
       $product = '';
       $product_v2 = '';
       foreach ($items as $item) {
+
+      			$metaProduct =  $item->get_formatted_meta_data();
+		    	$metaText = '';
+
+	            foreach ($metaProduct as $key => $value) {
+	               $metaText .= $value->display_key.' : '.$value->value.chr(10);
+	            }
 
                $product_item = $item->get_product();
                if ($product_item) {
                		$sku = $product_item->get_sku();
                		$product .= $item['name'].' x'.$item['quantity'].' '.$item['total'].$curents.chr(10);
                		$product_v2 .= $item['name'].' x'.$item['quantity'].' '.$item['total'].$curents.' sku('.$sku.')'.chr(10);
+               		$product_v3 .= $item['name'].' x'.$item['quantity'].' '.$item['total'].$curents.' '.$metaText.chr(10);
                }
             
       }
       $return['{products}'] = $product;
       $return['{products_v2}'] = $product_v2;
+      $return['{products_v3}'] = $product_v3;
 
 
 			$shop = $this->order->get_items( 'shipping' );

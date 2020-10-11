@@ -2,42 +2,102 @@
 
 add_shortcode( 'TS', 'text_seo' );
 
+require_once  'rand_values_script.php';
+
+
+
 function text_seo ( $args ){
 
-	$pages = $wpdb->get_results( 
-	"
-	SELECT post_title, post_content 
-	FROM $wpdb->posts
-	WHERE post_status = 'publish' 
-	AND post_type = 'page'
-	"
-);
-
-/* вытаскивает из базы данных заголовки и содержимое
-всех опубликованных страниц */
-if( $pages ) {
-	foreach ( $pages as $page ) {
-		echo $page->post_title;
-	}
-}
-// выводим заголовки
 	
+	get_rand_post('page', '0h');
+
+	get_rand_post('page', '0t');
+
+	get_rand_post('page', '2h');
+
+	get_rand_post('page', '3h');
+
+	get_rand_post('page', '3t1');
+
+	get_rand_post('page', '3t2');
+
+	get_rand_post('page', '4h');
+
+	get_rand_post('page', '4t');
+
+	get_rand_post('page', '6t');
+	
+	get_rand_post('page', '7t');
+
+	get_rand_post('page', '8t');
+
+	get_rand_post('page', '9t');
+
+
+
+
+	//getting values from custom field
+
+	$values = explode(" ", get_field('rand-values'));
 
 	if (empty($args['text-position'])){
-
 		echo do_shortcode( '[phone text = "Позвоните в Эвамакс"]');
 		wp_mail('sugudushka@gmail.com', 'Незаполненный текст на странице' . get_page_link(), 'Ошибка: незаполненное поле');
 		return;
 
 	}
 
+	switch ($args['text-position']){
+		case '0h':
+			$i = 0;
+			break;
+		case '0t':
+			$i = 1;
+			break;
+		case '2h':
+			$i = 2;
+			break;
+		case '3h':
+			$i = 3;
+			break;
+		case '3t1':
+			$i = 4;
+			break;
+		case '3t2':
+			$i = 5;
+			break;
+		case '4h':
+			$i = 6;
+			break;
+		case '4t':
+			$i = 7;
+			break;
+		case '5t':
+			$i = 8;
+			break;
+		case '6t':
+			$i = 9;
+			break;
+		case '7t':
+			$i = 10;
+			break;			
+		case '8t':
+			$i = 11;
+			break;
+		case '9t':
+			$i = 12;
+			break;
+	}
+
 	$query = new WP_Query( [
-		'posts_per_page' => 1,
+		// 'posts_per_page' => 1,
 		'post_type' => 'seo',
+		'p' => $values[$i],
 		'trim' => $args['text-position']
 	] );
 
 	global $post;
+	$content = 0;
 
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
@@ -49,9 +109,11 @@ if( $pages ) {
 	wp_reset_postdata(); 
 
 	//clear all html tags
-	$content =  wp_strip_all_tags( $content );
+	$content =  strip_tags( $content, '<a><h3><h2><h4><h5>' );
 
-	echo do_shortcode( $content );
+	// echo do_shortcode( $content );
+
+	return(do_shortcode( $content ));
 
 }
 
@@ -65,38 +127,38 @@ function phone_number( $atts ) {
   return "<a href = 'tel:+7(915)428-47-46'>  {$param['text']}</a>";
 }
 
-add_shortcode('seo-text', 'seo_text');
-function seo_text($args){
-  switch ($args['text_number']) {
-  	case '0':
-  		return get_field('text-seo-0-text');
-  		break;
+// add_shortcode('seo-text', 'seo_text');
+// function seo_text($args){
+//   switch ($args['text_number']) {
+//   	case '0':
+//   		return get_field('text-seo-0-text');
+//   		break;
 
-	case '0':
-  		return get_field('text-seo-0-text');
-  		break;
+// 	case '0':
+//   		return get_field('text-seo-0-text');
+//   		break;
 
-	case '1':
-  		return get_field('text-seo-1-text');
-  		break;  
+// 	case '1':
+//   		return get_field('text-seo-1-text');
+//   		break;  
   		
-  	case '2':
-  		return get_field('text-seo-2-text');
-  		break; 	
+//   	case '2':
+//   		return get_field('text-seo-2-text');
+//   		break; 	
 
-	case '3':
-  		return get_field('text-seo-3-text');
-  		break; 	 
+// 	case '3':
+//   		return get_field('text-seo-3-text');
+//   		break; 	 
 
-  	case '4':
-  		return get_field('text-seo-4-text');
-  		break; 
+//   	case '4':
+//   		return get_field('text-seo-4-text');
+//   		break; 
 
-  	default:
-  		return('error');
-  		break;
-	}
-}
+//   	default:
+//   		return('error');
+//   		break;
+// 	}
+// }
 
 //disctrict shortcodes 
 //
@@ -120,25 +182,25 @@ function field_shortcode_po() {
 
 //shortcodes for text group (ACF)
 
-add_shortcode( 'price-table-heading', 'field_price_table_heading' );
+// add_shortcode( 'price-table-heading', 'field_price_table_heading' );
 
-function field_price_table_heading() {
-	return get_field('price-table-heading');
-}
+// function field_price_table_heading() {
+// 	return get_field('price-table-heading');
+// }
 
-add_shortcode( 'price-table-text', 'field_price_table_text' );
+// add_shortcode( 'price-table-text', 'field_price_table_text' );
 
-function field_price_table_text() {
-	return get_field('price-table-text');
-}
+// function field_price_table_text() {
+// 	return get_field('price-table-text');
+// }
 
 // heading for 0 block
 
-add_shortcode( 'text-seo-0-heading', 'field_text_seo_0_heading' );
+// add_shortcode( 'text-seo-0-heading', 'field_text_seo_0_heading' );
 
-function field_text_seo_0_heading() {
-	return get_field('text-seo-0-heading');
-}
+// function field_text_seo_0_heading() {
+// 	return get_field('text-seo-0-heading');
+// }
 
 
 //shortcode rand values
@@ -160,13 +222,15 @@ function add_assets() {
 
 	wp_register_script( 'jquery-core', '//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
 
-	wp_enqueue_script( 'jquery' );	
+	wp_enqueue_script('jquery');	
 
 	wp_enqueue_script('vue.js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', array(), '1.0.0', true );
 
 	wp_enqueue_script('calc-common', get_template_directory_uri() . '/js/common.js', array(), '1.0.0', true );
 	
 	wp_enqueue_script('map', get_template_directory_uri() . '/js/map.js', array(), '1.0.0', true );
+
+	wp_enqueue_script('rand-values', get_template_directory_uri() . '/rand_values_script', array(), '1.0.0', true );
 
 }
 
