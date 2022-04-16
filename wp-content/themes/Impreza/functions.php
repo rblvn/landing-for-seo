@@ -7,31 +7,30 @@ require_once  'rand_values_script.php';
 
 
 function text_seo ( $args ){
-
 	
-	get_rand_post('page', '0h');
+	 get_rand_post('page', '0h');
 
-	get_rand_post('page', '0t');
+	// get_rand_post('page', '0t');
 
-	get_rand_post('page', '2h');
+	// get_rand_post('page', '2h');
 
-	get_rand_post('page', '3h');
+	// get_rand_post('page', '3h');
 
-	get_rand_post('page', '3t1');
+	// get_rand_post('page', '3t1');
 
-	get_rand_post('page', '3t2');
+	// get_rand_post('page', '3t2');
 
-	get_rand_post('page', '4h');
+	// get_rand_post('page', '4h');
 
-	get_rand_post('page', '4t');
+	// get_rand_post('page', '4t');
 
-	get_rand_post('page', '6t');
+	// get_rand_post('page', '6t');
 	
-	get_rand_post('page', '7t');
+	// get_rand_post('page', '7t');
 
-	get_rand_post('page', '8t');
+	// get_rand_post('page', '8t');
 
-	get_rand_post('page', '9t');
+	// get_rand_post('page', '9t');
 
 
 
